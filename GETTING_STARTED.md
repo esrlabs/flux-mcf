@@ -5,7 +5,7 @@ Getting Started with MCF
 
 ### Dependencies
 Mcf has been tested on Ubuntu 18.04 / 20.04 with the following package dependencies:
-* [googletest v1.11.0](https://github.com/google/googletest/tree/release-1.11.0) 
+* [googletest v1.11.0](https://github.com/google/googletest/tree/release-1.11.0)
 * [libzmq v4.3.4](https://github.com/zeromq/libzmq/tree/v4.3.4)
 * [cppzmq v4.8.1](https://github.com/zeromq/cppzmq/tree/v4.8.1)
 * [msgpack-c v4.0.3](https://github.com/msgpack/msgpack-c/tree/cpp-4.0.3)
@@ -19,21 +19,21 @@ For building MCF with CUDA support:
 
 ### Installing Dependencies
 Dependencies can be installed in any of the following ways:
-* *(Option 1) Install dependencies with automated install script*: Run the install script to automatically install all dependencies. Dependency packages will downloaded to `mcf/deps/<package_name>` and installed to a user defined directory:
-        
+* *(Option 1) Install dependencies with automated install script*: Run the install script to automatically install all dependencies. Dependency packages will downloaded to `mcf/deps/<package_name>` and installed to a user defined directory (note: install_dir must be an absolute path, for example "$HOME/flux-mcf"):
+
   ```
   bash install_deps.sh <install_dir> <number_of_cores>
   ```
 
-  (Optional) To install dependencies required for build MCF with CUDA support:
+  (Optional) To install dependencies required to build MCF with CUDA support:
   ```
   bash install_cuda_deps.sh <install_dir> <number_of_cores>
   ```
 
-* *(Option 2) Manually install the dependencies*: Ensure that the headers and libraries (where applicable) are either installed to system paths or add the paths to the cmake search path using the CMAKE_PREFIX_PATH cmake argument.  
+* *(Option 2) Manually install the dependencies*: Ensure that the headers and libraries (where applicable) are either installed to system paths or add the paths to the cmake search path using the CMAKE_PREFIX_PATH cmake argument.
 
 * *(Option 3) Install dependencies within Docker container*: Follow the instructions in the Docker [README](docker/README.md).
-    
+
 ### Building MCF
 * The path to the installed dependencies can either be added to the MCF cmake command in `-DCMAKE_INSTALL_PREFIX` or can be added to `$PATH`:
 
@@ -48,14 +48,14 @@ Dependencies can be installed in any of the following ways:
   cd build
   cmake .. \
     -DCMAKE_INSTALL_PREFIX=/path/to/install/dir \                      # Directory where mcf will be installed
-    -DCMAKE_PREFIX_PATH="/path/to/deps/install;/path/to/other/dir \    # Directories in which dependencies are installed.
+    -DCMAKE_PREFIX_PATH="/path/to/deps/install;/path/to/other/dir" \    # Directories in which dependencies are installed.
     -DBUILD_CUDA=TRUE \
     -DBUILD_REMOTE=TRUE \
     -DBUILD_TESTS=TRUE
   make -j<number_of_cores>
   make install
   ```
-  Note. If you get an error `fatal error: unable to parse version script file /path/to/libexports.txt`, make sure you 
+  Note. If you get an error `fatal error: unable to parse version script file /path/to/libexports.txt`, make sure you
 are using the ld.bfd linker (as opposed to the gold linker for example).
 
 * Ensure that the install directory is on the LD_LIBRARY_PATH  (to make the change persist, add the command to your `.bashrc` file):
@@ -74,7 +74,7 @@ Follow instructions in [README.md](mcf_py/GETTING_STARTED.md)
 ```{note}
 MCF must be compiled with `-BUILD_REMOTE=TRUE`, `-BUILD_TESTS=TRUE` to run tests.
 ```
-* To run gtests: 
+* To run gtests:
 
   ```
   cd build
@@ -90,7 +90,7 @@ MCF must be compiled with `-BUILD_REMOTE=TRUE`, `-BUILD_TESTS=TRUE` to run tests
   ```
 
 * To run generated value type tests:
-         
+
   ```
   cd mcf_tools/types_generator/test/generated_tests/example_value_types_test && bash run_test.sh
   ```
